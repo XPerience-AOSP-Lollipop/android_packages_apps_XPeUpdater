@@ -228,6 +228,15 @@ public class UpdateCheckService extends IntentService
         return URI.create(updateUri);
     }
 
+    private URI getDownloadURI() {
+        String updatedUri = getString(R.string.server_url_to_download);
+
+        updatedUri += Utils.getDeviceType() + "/" + getRomType() + "/"; //+ incrementalVersion;
+        //updateUri += "/v1/" + Utils.getDeviceType() + "/" + getRomType() + "/" + incrementalVersion;original
+
+        return URI.create(updatedUri);
+    }
+
     private void getAvailableUpdates() {
         // Get the type of update we should check for
         int updateType = Utils.getUpdateType();
@@ -274,7 +283,7 @@ public class UpdateCheckService extends IntentService
     private UpdateInfo parseUpdateJSONObject(JSONObject obj, int updateType) throws JSONException {
         UpdateInfo ui = new UpdateInfo.Builder()
                 .setFileName(obj.getString("file"))
-                .setDownloadUrl(obj.getString("filelink"))
+                .setDownloadUrl(getDownloadURI() + obj.getString("file"))
                 .setApiLevel(Build.VERSION.SDK_INT) // TODO: remove this entirely
                 .setBuildDate(obj.getLong("fileTimestamp"))
                 //.setType(obj.getString("romtype"))

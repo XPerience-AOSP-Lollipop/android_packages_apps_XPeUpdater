@@ -37,7 +37,7 @@ public class DownloadReceiver extends BroadcastReceiver{
     public static final String ACTION_DOWNLOAD_STARTED = "com.cyanogenmod.cmupdater.action.DOWNLOAD_STARTED";
 
     static final String ACTION_INSTALL_UPDATE = "com.cyanogenmod.cmupdater.action.INSTALL_UPDATE";
-    static final String EXTRA_FILENAME = "filename";
+    static final String EXTRA_FILENAME = "file";
 
     @Override
     public void onReceive(Context context, Intent intent) {

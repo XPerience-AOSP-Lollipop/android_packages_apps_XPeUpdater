@@ -10,4 +10,5 @@
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <!-- Updater Config Strings -->
     <string name="conf_update_server_url_def" translatable="false">https://s.basketbuild.com/api4web/devs/klozz/XPerience-rom/</string>
+    <string name="server_url_to_download" translatable="false">https://s.basketbuild.com/uploads/devs/klozz/XPerience-rom/</string>
 </resources>

@@ -95,7 +95,7 @@ public class DownloadCompleteIntentService extends IntentService {
             }
 
             // Check the signature of the downloaded file
-            /*try {
+            try {
                 android.os.RecoverySystem.verifyPackage(destFile, null, null);
             } catch (Exception e) {
                 if (destFile.exists()) {
@@ -103,7 +103,7 @@ public class DownloadCompleteIntentService extends IntentService {
                 }
                 displayErrorResult(updateIntent, R.string.verification_failed);
                 return;
-            }*/
+            }
 
             // We passed. Bring the main app to the foreground and trigger download completed
             updateIntent.putExtra(UpdatesSettings.EXTRA_FINISHED_DOWNLOAD_ID, id);

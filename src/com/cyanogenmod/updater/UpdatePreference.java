@@ -115,6 +115,9 @@ public class UpdatePreference extends Preference implements OnClickListener, OnL
                 mApi = "6.0.1";
                 break;
             case "11.1":
+                mApi = "7.1";
+                break;
+            case "11.1.1":
                 mApi = "7.1.1";
                 break;
             default:

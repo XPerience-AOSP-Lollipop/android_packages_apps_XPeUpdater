@@ -527,7 +527,7 @@ public class UpdatesSettings extends PreferenceFragment implements
         mUpdatesList.removeAll();
 
         // Convert the installed version name to the associated filename
-        String installedZip = "lineage-" + Utils.getInstalledVersion() + ".zip";
+        String installedZip = "xpe-" + Utils.getInstalledVersion() + ".zip";
 
         // Convert LinkedList to HashMap, keyed on filename.
         HashMap<String, UpdateInfo> updatesMap = new HashMap<String, UpdateInfo>();

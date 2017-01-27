@@ -222,7 +222,8 @@ public class UpdateCheckService extends IntentService
         }
 
         String incrementalVersion = SystemProperties.get("ro.build.version.incremental");
-        updateUri += "/v1/" + Utils.getDeviceType() + "/" + getRomType() + "/" + incrementalVersion;
+        updateUri += Utils.getDeviceType() + "/" + getRomType() + "/"; //+ incrementalVersion;
+        //updateUri += "/v1/" + Utils.getDeviceType() + "/" + getRomType() + "/" + incrementalVersion;original
 
         return URI.create(updateUri);
     }
@@ -249,7 +250,7 @@ public class UpdateCheckService extends IntentService
         LinkedList<UpdateInfo> updates = new LinkedList<UpdateInfo>();
         try {
             JSONObject obj = new JSONObject(jsonString);
-            JSONArray updateList = obj.getJSONArray("response");
+            JSONArray updateList = obj.getJSONArray("files");
             int length = updateList.length();
 
             Log.d(TAG, "Got update JSON data with " + length + " entries");
@@ -272,11 +273,11 @@ public class UpdateCheckService extends IntentService
 
     private UpdateInfo parseUpdateJSONObject(JSONObject obj, int updateType) throws JSONException {
         UpdateInfo ui = new UpdateInfo.Builder()
-                .setFileName(obj.getString("filename"))
-                .setDownloadUrl(obj.getString("url"))
+                .setFileName(obj.getString("file"))
+                .setDownloadUrl(obj.getString("filelink"))
                 .setApiLevel(Build.VERSION.SDK_INT) // TODO: remove this entirely
-                .setBuildDate(obj.getLong("datetime"))
-                .setType(obj.getString("romtype"))
+                .setBuildDate(obj.getLong("fileTimestamp"))
+                //.setType(obj.getString("romtype"))
                 .build();
 
         if (!ui.isNewerThanInstalled()) {

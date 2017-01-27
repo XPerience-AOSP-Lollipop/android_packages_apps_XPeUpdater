@@ -111,10 +111,10 @@ public class UpdatePreference extends Preference implements OnClickListener, OnL
         final String mBuildDate = Utils.getInstalledBuildDateLocalized(mContext, mBuildName[2]);
         String mApi;
         switch (mBuildName[1]) {
-            case "13.0":
+            case "10.0":
                 mApi = "6.0.1";
                 break;
-            case "14.1":
+            case "11.1":
                 mApi = "7.1.1";
                 break;
             default:

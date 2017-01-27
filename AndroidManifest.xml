@@ -35,6 +35,7 @@
             android:excludeFromRecents="true" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+                <action android:name="android.intent.action.LAUNCHER" />
                 <category android:name="com.android.settings.SHORTCUT" />
 
                 <category android:name="android.intent.category.DEFAULT" />

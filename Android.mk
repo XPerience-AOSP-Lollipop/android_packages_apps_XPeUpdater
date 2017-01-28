@@ -26,9 +26,9 @@ LOCAL_AAPT_FLAGS := \
     --extra-packages android.support.v7.appcompat \
     --extra-packages android.support.v7.cardview
 
-LOCAL_AAPT_FLAGS += --rename-manifest-package org.lineageos.updater
+LOCAL_AAPT_FLAGS += --rename-manifest-package mx.xperience.updater
 
-LOCAL_PACKAGE_NAME := CMUpdater
+LOCAL_PACKAGE_NAME := XPeUpdater
 
 LOCAL_PROGUARD_FLAGS := -include $(LOCAL_PATH)/proguard.flags
 

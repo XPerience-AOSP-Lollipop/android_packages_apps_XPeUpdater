@@ -65,7 +65,7 @@
   <string name="header_summary">%1$s\n%2$s • Android %3$s\n%4$s</string>
   <string name="sysinfo_last_check">Laatst gecontroleerd</string>
   <!-- Just reorder the chars, do not add / remove them (or the app will crash). MMMM = Month, dd = day, yyyy = year. Example: MMMM dd, yyyy -> January 01, 1970 -->
-  <string name="date_formatting">MMMM dd, yyyy</string>
+  <string name="date_formatting">dd MMMM yyyy</string>
   <!-- Build item -->
   <string name="download_button">Downloaden</string>
 </resources>

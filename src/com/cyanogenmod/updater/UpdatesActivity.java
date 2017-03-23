@@ -38,8 +38,8 @@ public class UpdatesActivity extends AppCompatActivity {
         super.onCreate(savedInstance);
         setContentView(R.layout.activity_updater);
 
-        Toolbar mToolbar = (Toolbar) findViewById(R.id.toolbar);
-        TextView mHeaderCm = (TextView) findViewById(R.id.header_version);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        TextView headerCm = (TextView) findViewById(R.id.header_version);
         mHeaderInfo = (TextView) findViewById(R.id.header_info);
 
         mSettingsFragment = new UpdatesSettings();
@@ -51,9 +51,9 @@ public class UpdatesActivity extends AppCompatActivity {
                 .replace(R.id.content_frame, mSettingsFragment).commit();
 
         updateHeader();
-        mToolbar.setTitle("");
-        mToolbar.setNavigationIcon(R.drawable.ic_logo);
-        setSupportActionBar(mToolbar);
+        toolbar.setTitle("");
+        toolbar.setNavigationIcon(R.drawable.ic_logo);
+        setSupportActionBar(toolbar);
 
         final CollapsingToolbarLayout collapsingToolbar = (CollapsingToolbarLayout)
                 findViewById(R.id.collapsing_toolbar);
@@ -88,14 +88,14 @@ public class UpdatesActivity extends AppCompatActivity {
     }
 
     @Override
-    public boolean onCreateOptionsMenu(Menu mMenu) {
-        getMenuInflater().inflate(R.menu.menu, mMenu);
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu, menu);
         return true;
     }
 
     @Override
-    public boolean onOptionsItemSelected(MenuItem mItem) {
-        switch (mItem.getItemId()) {
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
             case R.id.menu_refresh:
                 if (mSettingsFragment != null) {
                     mSettingsFragment.checkForUpdates();
@@ -109,7 +109,7 @@ public class UpdatesActivity extends AppCompatActivity {
                 break;
         }
 
-        return super.onOptionsItemSelected(mItem);
+        return super.onOptionsItemSelected(item);
     }
 
     private void updateHeader() {
@@ -119,15 +119,15 @@ public class UpdatesActivity extends AppCompatActivity {
     }
 
     private String getLastCheck() {
-        SharedPreferences mPrefs = PreferenceManager.getDefaultSharedPreferences(this);
-        Date mLastCheck = new Date(mPrefs.getLong(Constants.LAST_UPDATE_CHECK_PREF, 0));
-        String mDate = DateFormat.getLongDateFormat(this).format(mLastCheck);
-        String mTime = DateFormat.getTimeFormat(this).format(mLastCheck);
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
+        Date lastCheck = new Date(prefs.getLong(Constants.LAST_UPDATE_CHECK_PREF, 0));
+        String date = DateFormat.getLongDateFormat(this).format(lastCheck);
+        String time = DateFormat.getTimeFormat(this).format(lastCheck);
         return String.format("%1$s %2$s (%3$s)", getString(R.string.sysinfo_last_check),
-                mDate, mTime);
+                date, time);
     }
 
-    void showSnack(String mMessage) {
-        Snackbar.make(findViewById(R.id.coordinator), mMessage, Snackbar.LENGTH_LONG).show();
+    void showSnack(String message) {
+        Snackbar.make(findViewById(R.id.coordinator), message, Snackbar.LENGTH_LONG).show();
     }
 }

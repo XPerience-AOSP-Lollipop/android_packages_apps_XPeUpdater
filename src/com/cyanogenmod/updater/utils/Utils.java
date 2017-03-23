@@ -90,7 +90,6 @@ public class Utils {
             default:
                 return "???";
         }
-
     }
 
     public static String getUserAgentString(Context context) {

@@ -19,6 +19,7 @@ import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.os.Build;
 import android.os.SystemProperties;
 import android.preference.PreferenceManager;
 
@@ -28,8 +29,10 @@ import com.cyanogenmod.updater.service.UpdateCheckService;
 
 import java.io.File;
 import java.io.IOException;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
+import java.text.DateFormat;
+import java.util.Date;
+import java.util.Locale;
+import java.util.TimeZone;
 
 public class Utils {
     private Utils() {
@@ -55,6 +58,10 @@ public class Utils {
         return SystemProperties.get("ro.xpe.version");
     }
 
+    public static String getInstalledVersionName() {
+        return getInstalledVersion().split("-")[0];
+    }
+
     public static int getInstalledApiLevel() {
         return SystemProperties.getInt("ro.build.version.sdk", 0);
     }
@@ -63,39 +70,27 @@ public class Utils {
         return SystemProperties.getLong("ro.build.date.utc", 0);
     }
 
-    /**
-     * Extract date from build YYYYMMDD date
-     *
-     * @param mContext for getting localized string
-     *
-     * @return MMMM dd, yyyy formatted date (or localized translation)
-     */
-    public static String getInstalledBuildDateLocalized(Context mContext, String mBuildDate) {
-        if (mBuildDate.length() < 8) {
-            return "";
+    public static String getInstalledBuildType() {
+        return SystemProperties.get("ro.xpe.releasetype", Constants.CM_RELEASETYPE_UNOFFICIAL);
+    }
+
+    public static String getDateLocalized(Context context, long unixTimestamp) {
+        DateFormat f = DateFormat.getDateInstance(DateFormat.LONG, getCurrentLocale(context));
+        f.setTimeZone(TimeZone.getTimeZone("UTC"));
+        Date date = new Date(unixTimestamp * 1000);
+        return f.format(date);
+    }
+
+    public static String getAndroidVersion(String versionName) {
+        switch (versionName) {
+            case "10.0":
+                return "6.0";
+            case "11.1":
+                return "7.1";
+            default:
+                return "???";
         }
 
-        Calendar mCal = Calendar.getInstance();
-        mCal.set(Calendar.YEAR, Integer.parseInt(mBuildDate.substring(0, 4)));
-        mCal.set(Calendar.MONTH, Integer.parseInt(mBuildDate.substring(4, 6)) - 1);
-        mCal.set(Calendar.DAY_OF_MONTH, Integer.parseInt(mBuildDate.substring(6, 8)));
-
-        String mDate = new SimpleDateFormat(mContext.getString(R.string.date_formatting),
-                        mContext.getResources().getConfiguration().locale).format(mCal.getTime());
-
-        int mPosition = 0;
-        boolean mWorking = true;
-        while (mWorking) {
-            if (!Character.isDigit(mDate.charAt(mPosition))) {
-                mWorking = false;
-            } else {
-                mPosition++;
-            }
-        }
-
-        return mDate.substring(0, mPosition) +
-                String.valueOf(mDate.charAt(mPosition)).toUpperCase() +
-                mDate.substring(mPosition + 1, mDate.length());
     }
 
     public static String getUserAgentString(Context context) {
@@ -170,4 +165,27 @@ public class Utils {
         }
         return updateType;
     }
+
+    public static String buildTypeToString(int type) {
+        switch (type) {
+            case Constants.UPDATE_TYPE_SNAPSHOT:
+                return Constants.CM_RELEASETYPE_SNAPSHOT;
+            case Constants.UPDATE_TYPE_NIGHTLY:
+                return Constants.CM_RELEASETYPE_NIGHTLY;
+            case Constants.UPDATE_TYPE_EXPERIMENTAL:
+                return Constants.CM_RELEASETYPE_EXPERIMENTAL;
+            default:
+                return Constants.CM_RELEASETYPE_UNOFFICIAL;
+        }
+    }
+
+    public static Locale getCurrentLocale(Context context) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+            return context.getResources().getConfiguration().getLocales()
+                    .getFirstMatch(context.getResources().getAssets().getLocales());
+        } else {
+            return context.getResources().getConfiguration().locale;
+        }
+    }
+
 }

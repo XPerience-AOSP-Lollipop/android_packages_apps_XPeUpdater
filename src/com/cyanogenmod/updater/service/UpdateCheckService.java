@@ -220,7 +220,7 @@ public class UpdateCheckService extends IntentService
     }
 
     private URI getServerURI() {
-        String updateUri = SystemProperties.get("cm.updater.uri");
+        String updateUri = SystemProperties.get("xpe.updater.uri");
         if (TextUtils.isEmpty(updateUri)) {
             updateUri = getString(R.string.conf_update_server_url_def);
         }

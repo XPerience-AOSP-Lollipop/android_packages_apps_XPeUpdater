@@ -200,23 +200,7 @@ public class UpdateCheckService extends IntentService
     }
 
     private String getRomType() {
-        String type;
-        switch (Utils.getUpdateType()) {
-            case Constants.UPDATE_TYPE_SNAPSHOT:
-                type = Constants.CM_RELEASETYPE_SNAPSHOT;
-                break;
-            case Constants.UPDATE_TYPE_NIGHTLY:
-                type = Constants.CM_RELEASETYPE_NIGHTLY;
-                break;
-            case Constants.UPDATE_TYPE_EXPERIMENTAL:
-                type = Constants.CM_RELEASETYPE_EXPERIMENTAL;
-                break;
-            case Constants.UPDATE_TYPE_UNOFFICIAL:
-            default:
-                type = Constants.CM_RELEASETYPE_UNOFFICIAL;
-                break;
-        }
-        return type.toLowerCase();
+        return Utils.getInstalledBuildType();
     }
 
     private URI getServerURI() {
@@ -226,7 +210,7 @@ public class UpdateCheckService extends IntentService
         }
 
         String incrementalVersion = SystemProperties.get("ro.build.version.incremental");
-        updateUri += Utils.getDeviceType() + "/" + getRomType() + "/"; //+ incrementalVersion;
+        updateUri += Utils.getDeviceType() + "/" + getRomType().toLowerCase() + "/"; //+ incrementalVersion;
         //updateUri += "/v1/" + Utils.getDeviceType() + "/" + getRomType() + "/" + incrementalVersion;original
 
         return URI.create(updateUri);
@@ -242,9 +226,6 @@ public class UpdateCheckService extends IntentService
     }
 
     private void getAvailableUpdates() {
-        // Get the type of update we should check for
-        int updateType = Utils.getUpdateType();
-
         // Get the actual ROM Update Server URL
         URI updateServerUri = getServerURI();
         UpdatesJsonObjectRequest request;
@@ -259,7 +240,7 @@ public class UpdateCheckService extends IntentService
         ((UpdateApplication) getApplicationContext()).getQueue().add(request);
     }
 
-    private LinkedList<UpdateInfo> parseJSON(String jsonString, int updateType) {
+    private LinkedList<UpdateInfo> parseJSON(String jsonString) {
         LinkedList<UpdateInfo> updates = new LinkedList<UpdateInfo>();
         try {
             JSONObject obj = new JSONObject(jsonString);
@@ -273,7 +254,7 @@ public class UpdateCheckService extends IntentService
                     continue;
                 }
                 JSONObject item = updateList.getJSONObject(i);
-                UpdateInfo info = parseUpdateJSONObject(item, updateType);
+                UpdateInfo info = parseUpdateJSONObject(item);
                 if (info != null) {
                     updates.add(info);
                 }
@@ -284,7 +265,7 @@ public class UpdateCheckService extends IntentService
         return updates;
     }
 
-    private UpdateInfo parseUpdateJSONObject(JSONObject obj, int updateType) throws JSONException {
+    private UpdateInfo parseUpdateJSONObject(JSONObject obj) throws JSONException {
         UpdateInfo ui = new UpdateInfo.Builder()
                 .setFileName(obj.getString("file"))
                 .setDownloadUrl(getDownloadURI() + obj.getString("file"))
@@ -293,6 +274,7 @@ public class UpdateCheckService extends IntentService
                 //.setType(obj.getString("romtype"))
                 .build();
 
+// XXXX Move this into .isCompatible()
         if (!ui.isNewerThanInstalled()) {
             Log.d(TAG, "Build " + ui.getFileName() + " is older than the installed build");
             return null;
@@ -311,10 +293,8 @@ public class UpdateCheckService extends IntentService
 
     @Override
     public void onResponse(JSONObject jsonObject) {
-        int updateType = Utils.getUpdateType();
-
         LinkedList<UpdateInfo> lastUpdates = State.loadState(this);
-        LinkedList<UpdateInfo> updates = parseJSON(jsonObject.toString(), updateType);
+        LinkedList<UpdateInfo> updates = parseJSON(jsonObject.toString());
 
         int newUpdates = 0, realUpdates = 0;
         for (UpdateInfo ui : updates) {

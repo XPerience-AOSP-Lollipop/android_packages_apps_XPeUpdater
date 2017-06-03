@@ -199,10 +199,6 @@ public class UpdateCheckService extends IntentService
         sendBroadcast(finishedIntent);
     }
 
-    private String getRomType() {
-        return Utils.getInstalledBuildType();
-    }
-
     private URI getServerURI() {
         String updateUri = SystemProperties.get("xpe.updater.uri");
         if (TextUtils.isEmpty(updateUri)) {
@@ -210,7 +206,7 @@ public class UpdateCheckService extends IntentService
         }
 
         String incrementalVersion = SystemProperties.get("ro.build.version.incremental");
-        updateUri += Utils.getDeviceType() + "/" + getRomType().toLowerCase() + "/"; //+ incrementalVersion;
+        updateUri += Utils.getDeviceType() + "/" + Utils.getInstalledBuildType() + "/"; //+ incrementalVersion;
         //updateUri += "/v1/" + Utils.getDeviceType() + "/" + getRomType() + "/" + incrementalVersion;original
 
         return URI.create(updateUri);

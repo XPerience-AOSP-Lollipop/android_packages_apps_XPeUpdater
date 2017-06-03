@@ -477,7 +477,11 @@ public class UpdatesSettings extends PreferenceFragmentCompat implements
         final LinkedList<UpdateInfo> updates = new LinkedList<UpdateInfo>();
 
         for (String fileName : existingFiles) {
-            updates.add(new UpdateInfo.Builder().setFileName(fileName).build());
+            updates.add(new UpdateInfo.Builder()
+                    .setFileName(fileName)
+                    .setBuildDate(Utils.getTimestampFromFileName(fileName))
+                    .setType(Utils.getTypeFromFileName(fileName))
+                    .build());
         }
         for (UpdateInfo update : availableUpdates) {
             // Only add updates to the list that are not already downloaded

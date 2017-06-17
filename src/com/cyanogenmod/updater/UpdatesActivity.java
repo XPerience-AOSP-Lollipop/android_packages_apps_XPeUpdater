@@ -52,8 +52,9 @@ public class UpdatesActivity extends AppCompatActivity {
 
         updateHeader();
         toolbar.setTitle("");
-        toolbar.setNavigationIcon(R.drawable.ic_logo);
+        //toolbar.setNavigationIcon(R.drawable.ic_logo);
         setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         final CollapsingToolbarLayout collapsingToolbar = (CollapsingToolbarLayout)
                 findViewById(R.id.collapsing_toolbar);
@@ -110,6 +111,12 @@ public class UpdatesActivity extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public boolean onSupportNavigateUp() {
+        onBackPressed();
+        return true;
     }
 
     private void updateHeader() {

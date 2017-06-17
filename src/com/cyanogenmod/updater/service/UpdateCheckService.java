@@ -37,6 +37,7 @@ import com.cyanogenmod.updater.misc.State;
 import com.cyanogenmod.updater.misc.UpdateInfo;
 import com.cyanogenmod.updater.receiver.DownloadReceiver;
 import com.cyanogenmod.updater.utils.Utils;
+import com.cyanogenmod.updater.misc.Constants;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -215,7 +216,7 @@ public class UpdateCheckService extends IntentService
     private URI getDownloadURI() {
         String updatedUri = getString(R.string.server_url_to_download);
 
-        updatedUri += Utils.getDeviceType() + "/" + getRomType() + "/"; //+ incrementalVersion;
+        updatedUri += Utils.getDeviceType() + "/" + Utils.getInstalledBuildType() + "/"; //+ incrementalVersion;
         //updateUri += "/v1/" + Utils.getDeviceType() + "/" + getRomType() + "/" + incrementalVersion;original
 
         return URI.create(updatedUri);
@@ -268,6 +269,9 @@ public class UpdateCheckService extends IntentService
                 .setApiLevel(Build.VERSION.SDK_INT) // TODO: remove this entirely
                 .setBuildDate(obj.getLong("fileTimestamp"))
                 //.setType(obj.getString("romtype"))
+                .setType(SystemProperties.get(Constants.PROPERTY_CM_RELEASETYPE,
+                Constants.CM_RELEASE_TYPE_DEFAULT).toLowerCase())
+                .setVersion(SystemProperties.get("ro.xpe.version").toLowerCase())
                 .build();
 
 // XXXX Move this into .isCompatible()

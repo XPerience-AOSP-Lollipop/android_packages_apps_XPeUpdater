@@ -85,7 +85,7 @@ public class Utils {
 
     public static UpdateInfo getInstalledUpdateInfo() {
         return new UpdateInfo.Builder()
-            .setFileName("lineage-" + getInstalledVersion() + ".zip")
+            .setFileName("xpe-" + getInstalledVersion() + ".zip")
             .setVersion(getInstalledVersionName())
             .setApiLevel(getInstalledApiLevel())
             .setBuildDate(getInstalledBuildDate())
@@ -120,17 +120,27 @@ public class Utils {
     }
 
     public static String getAndroidVersion(String versionName) {
-        switch (versionName) {
+        if (versionName != null) {
+            switch (versionName) {
             case "10.0":
                 return "6.0";
             case "11.1":
                 return "7.1";
             case "11.1.2":
                 return "7.1.2";
-            default:
-                return "???";
         }
     }
+         return "???";
+  }
+
+    public static String getVersionFromFileName(String fileName) {
+        String[] subStrings = fileName.split("-");
+        if (subStrings.length < 2 || subStrings[1].length() < 4) {
+            Log.e(TAG, "The given filename is not valid: " + fileName);
+            return "????";
+         }
+        return subStrings[1];
+     }
 
     public static String getTypeFromFileName(String fileName) {
         String[] subStrings = fileName.split("-");

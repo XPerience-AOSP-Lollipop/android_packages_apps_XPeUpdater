@@ -73,7 +73,7 @@
   <string name="type_installed">• Installiert</string>
   <string name="type_downloaded">• Heruntergeladen</string>
   <string name="type_downloading">• Wird heruntergeladen</string>
-  <string name="summary">%1$s\nXPerience %2$s • Android %3$s</string>
+  <string name="summary">%1$s\n %2$s • Android %3$s</string>
   <string name="download_button">Herunterladen</string>
   <string name="install_button">Installieren</string>
 </resources>

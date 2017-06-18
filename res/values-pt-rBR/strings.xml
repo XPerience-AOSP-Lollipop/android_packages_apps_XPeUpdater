@@ -72,7 +72,7 @@
   <string name="type_installed">• Instalado</string>
   <string name="type_downloaded">• Baixado</string>
   <string name="type_downloading">• Baixando</string>
-  <string name="summary">%1$s\nXPerience %2$s • Android %3$s</string>
+  <string name="summary">%1$s\n %2$s • Android %3$s</string>
   <string name="download_button">Baixar</string>
   <string name="install_button">Instalar</string>
 </resources>

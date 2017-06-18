@@ -263,6 +263,7 @@ public class UpdateCheckService extends IntentService
     }
 
     private UpdateInfo parseUpdateJSONObject(JSONObject obj) throws JSONException {
+        String  marta = obj.getString("file").replaceAll("\\XPerience-$", "");
         UpdateInfo ui = new UpdateInfo.Builder()
                 .setFileName(obj.getString("file"))
                 .setDownloadUrl(getDownloadURI() + obj.getString("file"))
@@ -271,7 +272,7 @@ public class UpdateCheckService extends IntentService
                 //.setType(obj.getString("romtype"))
                 .setType(SystemProperties.get(Constants.PROPERTY_CM_RELEASETYPE,
                 Constants.CM_RELEASE_TYPE_DEFAULT).toLowerCase())
-                .setVersion(SystemProperties.get("ro.xpe.version").toLowerCase())
+                .setVersion(marta.replaceAll("\\.zip$", ""))
                 .build();
 
 // XXXX Move this into .isCompatible()

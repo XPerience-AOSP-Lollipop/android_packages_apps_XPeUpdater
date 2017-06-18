@@ -482,6 +482,7 @@ public class UpdatesSettings extends PreferenceFragmentCompat implements
         for (String fileName : existingFiles) {
             updates.add(new UpdateInfo.Builder()
                     .setFileName(fileName)
+                    .setVersion(Utils.getVersionFromFileName(fileName))
                     .setBuildDate(Utils.getTimestampFromFileName(fileName))
                     .setType(Utils.getTypeFromFileName(fileName))
                     .build());
@@ -558,9 +559,9 @@ public class UpdatesSettings extends PreferenceFragmentCompat implements
             boolean isDownloading = ui.getFileName().equals(mFileName);
             int style;
 
-            if (!current.isCompatible(ui)) {
+            /*if (!current.isCompatible(ui)) {
                 style = UpdatePreference.STYLE_BLOCKED;
-            } else if (isDownloading) {
+            } else */if (isDownloading) {
                 // In progress download
                 style = UpdatePreference.STYLE_DOWNLOADING;
             } else if (isDownloadCompleting(ui.getFileName())) {

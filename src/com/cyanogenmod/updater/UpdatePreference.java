@@ -67,6 +67,7 @@ public class UpdatePreference extends Preference implements OnClickListener, OnL
     private Button mButton;
 
     private String mBuildVersionName;
+    private String mBuildVersion2;
     private String mBuildDateString;
     private String mBuildType;
 
@@ -111,6 +112,7 @@ public class UpdatePreference extends Preference implements OnClickListener, OnL
 
         mBuildType = mUpdateInfo.getType();
         mBuildVersionName = mUpdateInfo.getVersion();
+        mBuildVersion2 = Utils.getVersionFromFileName(mUpdateInfo.getFileName());
         mBuildDateString = Utils.getDateLocalized(mContext, mUpdateInfo.getDate());
 
         // Store the views from the layout
@@ -130,7 +132,7 @@ public class UpdatePreference extends Preference implements OnClickListener, OnL
         updatePreferenceViews();
 
         mSummaryText.setText(String.format(mContext.getString(R.string.summary), mBuildDateString,
-                mBuildVersionName, Utils.getAndroidVersion(mBuildVersionName)));
+                mBuildVersionName, Utils.getAndroidVersion(mBuildVersion2)));
 
         if (mOnReadyListener != null) {
             mOnReadyListener.onReady(this);

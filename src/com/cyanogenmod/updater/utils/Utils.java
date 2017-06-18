@@ -85,7 +85,7 @@ public class Utils {
 
     public static UpdateInfo getInstalledUpdateInfo() {
         return new UpdateInfo.Builder()
-            .setFileName("xpe-" + getInstalledVersion() + ".zip")
+            .setFileName("XPerience-" + getInstalledVersion() + ".zip")
             .setVersion(getInstalledVersionName())
             .setApiLevel(getInstalledApiLevel())
             .setBuildDate(getInstalledBuildDate())
@@ -119,19 +119,20 @@ public class Utils {
         }
     }
 
+
     public static String getAndroidVersion(String versionName) {
-        if (versionName != null) {
-            switch (versionName) {
+       if (versionName != null) {
+           switch (versionName) {
             case "10.0":
                 return "6.0";
             case "11.1":
                 return "7.1";
             case "11.1.2":
                 return "7.1.2";
-        }
-    }
-         return "???";
-  }
+         }
+     }
+                return "???";
+ }
 
     public static String getVersionFromFileName(String fileName) {
         String[] subStrings = fileName.split("-");

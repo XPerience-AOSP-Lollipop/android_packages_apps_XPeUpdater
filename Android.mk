@@ -33,7 +33,7 @@ LOCAL_AAPT_FLAGS := \
 
 LOCAL_AAPT_FLAGS += --rename-manifest-package mx.xperience.updater
 
-LOCAL_PACKAGE_NAME := XPeUpdater
+LOCAL_PACKAGE_NAME := Updater
 
 LOCAL_PROGUARD_FLAGS := -include $(LOCAL_PATH)/proguard.flags
 

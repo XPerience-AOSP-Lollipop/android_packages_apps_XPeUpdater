@@ -25,7 +25,7 @@
         android:scaleX="0.100000"
         android:scaleY="-0.100000">
         <path
-            android:fillColor="@color/accent"
+            android:fillColor="?android:attr/colorControlNormal"
             android:strokeWidth="1"
             android:pathData="M1065 2399 c-27 -24 -41 -30 -61 -25 -13 4 -30 3 -37 -1 -6 -4 -26 -6 -44 -4 -22 2
 -37 -4 -50 -18 -9 -12 -25 -21 -35 -21 -10 0 -27 -13 -39 -29 -21 -29 -49 -32 -49
@@ -305,38 +305,38 @@ c2 -12 -10 -20 -43 -29 -46 -13 -96 -52 -126 -99 -10 -17 -21 -22 -32 -18 -24 9
 121 10 125 -11 2 -13 -9 -18 -55 -22 -32 -4 -82 -9 -110 -13 -61 -8 -104 6 -133 44
 -33 42 -26 49 53 54 48 4 97 15 147 36 91 36 147 40 184 11z" />
         <path
-            android:fillColor="@color/accent"
+            android:fillColor="?android:attr/colorControlNormal"
             android:strokeWidth="1"
             android:pathData="M726 2058 c-33 -29 -60 -94 -45 -104 6 -4 30 -7 52 -7 53 0 87 36 87 94 0 38 -1 39
 -34 39 -22 0 -44 -8 -60 -22z m80 -3 c8 -21 -15 -74 -37 -85 -21 -12 -66 -13 -73
 -2 -11 18 25 73 56 87 42 18 47 18 54 0z" />
         <path
-            android:fillColor="@color/accent"
+            android:fillColor="?android:attr/colorControlNormal"
             android:strokeWidth="1"
             android:pathData="M1936 1649 c-34 -9 -66 -37 -66 -56 0 -24 28 -25 59 -2 23 17 38 20 65 16 39 -6 45
 2 19 25 -26 22 -44 26 -77 17z" />
         <path
-            android:fillColor="@color/accent"
+            android:fillColor="?android:attr/colorControlNormal"
             android:strokeWidth="1"
             android:pathData="M430 1175 c-17 -21 -70 -34 -97 -24 -29 11 -30 -4 -3 -31 25 -25 66 -25 108 0 34
 21 40 41 18 59 -10 9 -16 8 -26 -4z" />
         <path
-            android:fillColor="@color/accent"
+            android:fillColor="?android:attr/colorControlNormal"
             android:strokeWidth="1"
             android:pathData="M1903 1123 c-7 -2 -13 -15 -13 -28 0 -21 3 -23 41 -18 31 5 47 1 69 -16 37 -27 38
 -26 32 4 -9 48 -78 79 -129 58z" />
         <path
-            android:fillColor="@color/accent"
+            android:fillColor="?android:attr/colorControlNormal"
             android:strokeWidth="1"
             android:pathData="M660 715 c0 -25 -46 -65 -75 -65 -32 0 -32 -18 1 -30 36 -14 39 -13 79 21 37 33 47
 72 19 83 -22 9 -24 8 -24 -9z" />
         <path
-            android:fillColor="@color/accent"
+            android:fillColor="?android:attr/colorControlNormal"
             android:strokeWidth="1"
             android:pathData="M1594 698 c-4 -6 4 -20 19 -32 31 -25 50 -71 41 -100 -7 -21 -6 -21 15 -2 35 31 22
 107 -23 138 -17 12 -44 9 -52 -4z" />
         <path
-            android:fillColor="@color/accent"
+            android:fillColor="?android:attr/colorControlNormal"
             android:strokeWidth="1"
             android:pathData="M1102 538 c-8 -8 -8 -15 -1 -24 14 -17 14 -76 0 -102 -15 -28 -14 -31 9 -25 47 12
 67 95 34 141 -17 25 -25 27 -42 10z" />

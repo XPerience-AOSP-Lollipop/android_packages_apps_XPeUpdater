@@ -207,7 +207,7 @@ public class UpdateCheckService extends IntentService
         }
 
         String incrementalVersion = SystemProperties.get("ro.build.version.incremental");
-        updateUri += Utils.getDeviceType() + "/" + Utils.getInstalledBuildType() + "/"; //+ incrementalVersion;
+        updateUri += Utils.getDeviceType() + "/12/" + Utils.getInstalledBuildType() + "/"; //+ incrementalVersion;
         //updateUri += "/v1/" + Utils.getDeviceType() + "/" + getRomType() + "/" + incrementalVersion;original
 
         return URI.create(updateUri);
@@ -216,7 +216,7 @@ public class UpdateCheckService extends IntentService
     private URI getDownloadURI() {
         String updatedUri = getString(R.string.server_url_to_download);
 
-        updatedUri += Utils.getDeviceType() + "/" + Utils.getInstalledBuildType() + "/"; //+ incrementalVersion;
+        updatedUri += Utils.getDeviceType() + "/12/" + Utils.getInstalledBuildType() + "/"; //+ incrementalVersion;
         //updateUri += "/v1/" + Utils.getDeviceType() + "/" + getRomType() + "/" + incrementalVersion;original
 
         return URI.create(updatedUri);

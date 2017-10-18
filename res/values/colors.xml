@@ -12,7 +12,7 @@
     <!-- Palette colors referenced by top-level themes. -->
 <!--    <color name="theme_primary">#ff212121</color>
     <color name="theme_primary_dark">#ff000000</color>-->
-	<color name="theme_primary">#932633</color>
+    <color name="theme_primary">#932633</color>
     <color name="theme_primary_dark">#731C26</color>
 <!--	<color name="theme_primary">#2417AB</color>
     <color name="theme_primary_dark">#281CAE</color>-->
@@ -27,7 +27,7 @@
     <color name="background">#fafafa</color>
     <color name="black">#333333</color>
     <color name="white">#f5f5f5</color>
-    <color name="build">@color/theme_accent</color>
+    <color name="build">#5e97f6</color>
     <color name="card_background">@android:color/white</color>
 
 </resources>

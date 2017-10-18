@@ -129,6 +129,8 @@ public class Utils {
                 return "7.1";
             case "11.1.2":
                 return "7.1.2";
+            case "12.0.0":
+                return "8.0";
          }
      }
                 return "???";
